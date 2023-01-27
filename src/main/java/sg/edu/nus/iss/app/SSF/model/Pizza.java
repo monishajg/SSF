@@ -1,5 +1,9 @@
 package sg.edu.nus.iss.app.SSF.model;
 
+import java.util.Random;
+
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 //  Validation(wrkshp13,14)
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -40,17 +44,11 @@ public class Pizza {
         }
     }
 
-    public int getQuantity() {
+    public int getNumber() {
         return number;
     }
 
-    public void setQuantity(int quantity) {
-        this.number = quantity;
-    }
-
-    public Pizza(String type, String size, int number) {
-        this.type = type;
-        this.size = size;
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -101,11 +99,81 @@ public class Pizza {
         this.comments = comments;
     }
 
-    // Task 3 (cont.) =====================================
-    private static final long serialVersionUID = 1L;
+    // Task 3 (a.) =====================================
+    private String id;
+    
+    public synchronized String generateId(int numChars) {
+        Random r = new Random();
+        StringBuilder strBuilder = new StringBuilder();
+        while (strBuilder.length() < numChars) {
+            strBuilder.append(Integer.toHexString(r.nextInt()));
+        }
+        return strBuilder.toString().substring(0, numChars);
+    }
+    
+    // ALL PIZZA =====================================
+    public Pizza() {
+        this.id = generateId(8);
+    }
+    
+    public Pizza(String type, String size, int number) {
+        this.type = type;
+        this.size = size;
+        this.number = number;
+    }
 
+    public Pizza(String id, String name, String address, String phoneNumber,
+                    Boolean isRush, String comments, String type, String size, int number, int totalCost) {
+        this.id = generateId(8);
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.isRush = isRush;
+        this.comments = comments;
+        this.type = type;
+        this.size = size;
+        this.number = number;
+        this.totalCost = totalCost;
+    }
+    public JsonObject toJSON() {
+        return Json.createObjectBuilder()
+                .add("type", this.getType())
+                .add("size", this.getSize())
+                .add("number", this.getNumber())
+                .add("name", this.getName())
+                .add("address", this.getAddress())
+                .add("isRush", this.isRush())
+                .add("comments", this.getComments())
+                .add("cost", this.getCost())
+                .add("totalCost", this.getTotalCost())
+                .add("isRush", this.isRush())
+                .build();
+    }
+
+    public
+    // Task 3 (b.) =====================================
     private double cost;
     private double totalCost;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
 
     public void Order (String type, String size, boolean isRush) {
         this.type = type;
@@ -170,8 +238,6 @@ public class Pizza {
                 break;
         }
         cost = (basePrice * sizeMultiplier);
-        totalCost = cost + rushCharge;
+        totalCost = (basePrice * sizeMultiplier) + rushCharge;
     }
-
-
 }

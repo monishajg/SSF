@@ -12,21 +12,21 @@ import sg.edu.nus.iss.app.SSF.model.Pizza; //(wrkshp14,16,17)
 @Service // class contains business logic and can be used by other classes
 public class PizzaService {
 
-    // private static final String CONTACT_ENTITY = "contactlist";
+    private static final String PIZZA_ENTITY = "pizzalist";
 
     @Autowired
     RedisTemplate<String, Object> redisTemplate; //same in workshop14,16, store persistence methods
 
-    public void save() {
+    public void saveOrderDetails(final Pizza pizza) {
     //     System.out.println("mds >>>>>>>>");
-         redisTemplate.opsForValue().set("key","value");
+        redisTemplate.opsForValue().set(pizza.generateId(8),pizza.toJson().toString());
     }
 
-    // public void save() {
-    //     redisTemplate.opsForList()
-    //         .leftPush(CONTACT_ENTITY, "____value");
-    //     redisTemplate.opsForHash()
-    //         .put(CONTACT_ENTITY+"_Map","___hashkey","___value");
-    // }
+    public Pizza findById(final String id) {
+        Pizza result = (Pizza)redisTemplate.opsForHash()
+                        .get(PIZZA_ENTITY+ "_Map", id);
+        return result;
+
+    }
 
 }

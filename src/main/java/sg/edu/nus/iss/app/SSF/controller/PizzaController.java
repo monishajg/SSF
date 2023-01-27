@@ -54,7 +54,7 @@ public class PizzaController {
         if(result.hasErrors()){
             return "index";
         }
-        pizzaSvc.save();
+        pizzaSvc.saveOrderDetails();
         model.addAttribute( "pizza", pizza);
         response.setStatus(HttpServletResponse.SC_CREATED);
         return "view1";
