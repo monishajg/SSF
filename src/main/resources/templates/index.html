@@ -7,13 +7,15 @@
 		<link rel="stylesheet" href="/styles.css">
 	</head>
 	<body>
-
 		<div class="title">
 			<div><img src="/images/logo.jpg" class="thumbnail"></div>
 			<h2>Panucci's Pizza</h2>
 		</div>
-
-		<form>
+		<form
+		action="#"
+        th:action="@{/pizza}"
+        th:object="${postOrder}"
+        method="post">
 			<div>
 				<h2>Select a pizza</h2>
 				<table>
@@ -72,7 +74,7 @@
 					<tr>
 						<td>Quantity:</td>
 						<td>
-							<input type="number" min="1" name="quantity"> 
+							<input type="number" min="1" max="10" name="quantity"> 
 						</td>
 					</tr>
 					<tr>

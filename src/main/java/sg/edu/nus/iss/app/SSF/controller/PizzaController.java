@@ -42,7 +42,7 @@ public class PizzaController {
     private AppService appSvc;
 
     @PostMapping (path="/pizza")
-    public String postRegistration(@Valid Pizza pizza, 
+    public String postOrder(@Valid Pizza pizza, 
         BindingResult bResult, Model model){
          if(bResult.hasErrors()){
              return "index";

@@ -26,6 +26,42 @@
       </p>
       <br />
       <p>
+        Address:
+        <input type="text" data-th-field="*{address}" />
+        <br />
+        <span
+          class="error"
+          data-th-if="${#fields.hasErrors('address')}"
+          data-th-errors="*{address}"
+        ></span>
+      </p>
+      <br />
+      <p>
+        Phone:
+        <input type="text" data-th-field="*{phoneNumber}" />
+        <br />
+        <span
+          class="error"
+          data-th-if="${#fields.hasErrors('phoneNumber')}"
+          data-th-errors="*{phoneNumber}"
+        ></span>
+      </p>
+      <br />
+      <p>
+       Rush:
+       <input type="checkbox" data-th-field="*{isRush}"/> 
+      </p>
+      <p>
+        Comments:
+        <input type="text" data-th-field="*{comments}" />
+        <br />
+        <span
+          class="error"
+          data-th-if="${#fields.hasErrors('comments')}"
+          data-th-errors="*{comments}"
+        ></span>
+      </p>
+      <p>
         <input type="submit" value="Cancel Order" />
         <input type="submit" value="Place Order" />
       </p>
