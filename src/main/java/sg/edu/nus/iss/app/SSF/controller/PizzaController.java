@@ -54,7 +54,7 @@ public class PizzaController {
     @PostMapping("/pizza")
     public String savePizza(@Valid Pizza pizzaOrder, BindingResult bResult, RedirectAttributes redirectAttributes){
         if(bResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("error", "Invalid inputs")
+            redirectAttributes.addFlashAttribute("error", "Invalid inputs");
             return "index";
         }
         String orderId = UUID.randomUUID().toString().substring(0,8);
