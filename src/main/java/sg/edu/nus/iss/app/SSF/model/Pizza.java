@@ -112,6 +112,17 @@ public class Pizza {
     }
     
     // ALL PIZZA =====================================
+
+    private String orderId;
+    
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
     public Pizza pizzaOrder() {
         this.id = generateId(8);
     }
@@ -122,9 +133,9 @@ public class Pizza {
         this.number = number;
     }
 
-    public Pizza pizzaOrder(String id, String name, String address, String phoneNumber,
+    public Pizza pizzaOrder(String orderId, String name, String address, String phoneNumber,
                     Boolean isRush, String comments, String type, String size, int number, int totalCost) {
-        this.id = generateId(8);
+        this.orderId = generateId(8);
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -147,6 +158,7 @@ public class Pizza {
                 .add("comments", this.getComments())
                 .add("cost", this.getCost())
                 .add("totalCost", this.getTotalCost())
+                .add("orderId", this.getOrderId())
                 .build();
     }
 
