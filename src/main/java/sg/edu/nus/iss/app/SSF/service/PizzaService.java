@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-// import sg.edu.nus.iss.app.SSF.model.Model; (wrkshp14,16,17)
+import sg.edu.nus.iss.app.SSF.model.Pizza; //(wrkshp14,16,17)
 
 @Service // class contains business logic and can be used by other classes
 public class PizzaService {

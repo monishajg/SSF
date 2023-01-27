@@ -1,22 +1,10 @@
 package sg.edu.nus.iss.app.SSF.model;
 
-//??? clean up later
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Random;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 //  Validation(wrkshp13,14)
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.Digits;
 
 public class Pizza {
     // Task 2 =====================================
@@ -58,6 +46,12 @@ public class Pizza {
 
     public void setQuantity(int quantity) {
         this.number = quantity;
+    }
+
+    public Pizza(String type, String size, int number) {
+        this.type = type;
+        this.size = size;
+        this.number = number;
     }
 
     // Task 3 =====================================

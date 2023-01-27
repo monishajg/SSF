@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
 
-// import sg.edu.nus.iss.app.SSF.model.Model; (wrkshp13)
+import sg.edu.nus.iss.app.SSF.model.Pizza; //(wrkshp13)
 
 //@Component("contacts") //used for autodetection
 public class Models {

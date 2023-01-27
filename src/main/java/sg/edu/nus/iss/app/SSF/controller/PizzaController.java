@@ -29,9 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServletResponseWrapper;
-//etc - ??? clean up later
-import jakarta.servlet.http.HttpSession;
+
 import jakarta.validation.Valid;
 import redis.clients.jedis.Response;
 import sg.edu.nus.iss.app.SSF.model.Pizza;
@@ -57,7 +55,7 @@ public class PizzaController {
             return "index";
         }
         pizzaSvc.save();
-        // model.addAttribute( "pizza", pizza);
+        model.addAttribute( "pizza", pizza);
         response.setStatus(HttpServletResponse.SC_CREATED);
         return "view1";
     }
