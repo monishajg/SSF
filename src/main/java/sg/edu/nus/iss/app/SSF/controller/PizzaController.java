@@ -4,6 +4,7 @@ package sg.edu.nus.iss.app.SSF.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,11 +31,12 @@ import org.springframework.web.bind.annotation.RestController;
 //etc - ??? clean up later
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import sg.edu.nus.iss.app.SSF.model.Pizza;
 import sg.edu.nus.iss.app.SSF.service.AppService;
 
-// @Controller // @RestController
-@RequestMapping(path="/") // - ??? clean up later
-public class AppController {
+@Controller
+@RequestMapping(path="/")
+public class PizzaController {
 
     //@Autowired //(wrkshp14,16,17)
     //private AppService appSvc;
@@ -45,15 +47,15 @@ public class AppController {
     //     return "result";
     // }
 
-    //@PostMapping //(path="") //(wrkshp14,16)
-    //public ???type? postSomething(Model model,){
-    //public String getUser() {
-    //    System.out.println("Hellloooo");
-    //    appService.saveGame();
-    //    return "hello";
-    //}
-    //     return "result";
-    // }
+    @PostMapping (path="/pizza")
+    public String postRegistration(@Valid Pizza pizza, 
+        BindingResult bResult, Model model){
+         if(bResult.hasErrors()){
+             return "index";
+         }
+         return "view1";
+    }
+    
 
     // @PutMapping(path="{}") //(wrkshp16)
 }

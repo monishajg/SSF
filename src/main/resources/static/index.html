@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IndexHTML wrkshp_ssfvalid,sessio,12,14,17</title>
+    <title>View 0</title>
 </head>
 <body>
-    <h1>My App</h1>
-    <form action="user" method="Post">
-        <input type="submit" value="result">
+    <h1>Panucci's Pizza</h1>
+    <form
+    action="#"
+    data-th-action="@{/}"
+    data-th-object="${pizza}"
+    method="post"
+    >
+        <p>
+            <h2>Select a pizza</h2>
+            <br>
+            <select th:field="*{selectedOption}">
+                <option th:each="pizza : ${s}" th:value="${option.value}" th:text="${option.text}"></option>
+            </select>
+        </p>
+        <input type="submit" value="Next">
     </form>
 </body>
 </html>
