@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.app.SSF.controller;
 
+import java.util.UUID;
+
 //controller(wrkshp17) - ??? clean up later
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -49,15 +52,15 @@ public class PizzaController {
     // }
 
     @PostMapping("/pizza")
-    public String savePizza(@Valid Pizza pizza, BindingResult result, 
-                Model model, HttpServletResponse response){
-        if(result.hasErrors()){
+    public String savePizza(@Valid Pizza pizzaOrder, BindingResult bResult, RedirectAttributes redirectAttributes){
+        if(bResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("error", "Invalid inputs")
             return "index";
         }
-        pizzaSvc.saveOrderDetails();
-        model.addAttribute( "pizza", pizza);
-        response.setStatus(HttpServletResponse.SC_CREATED);
-        return "view1";
+        String orderId = UUID.randomUUID().toString().substring(0,8);
+        pizzaOrder.setOrderId(orderId);
+        redisTemplate.opsForValue().set(orderId,pizzaOrder);
+        redirectAttributes.addFlashAttribute("message", "Order successfully placed. Order ID:"+orderId);
     }
 
 

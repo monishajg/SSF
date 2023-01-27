@@ -112,17 +112,17 @@ public class Pizza {
     }
     
     // ALL PIZZA =====================================
-    public Pizza() {
+    public Pizza pizzaOrder() {
         this.id = generateId(8);
     }
     
-    public Pizza(String type, String size, int number) {
+    public Pizza pizzaOrder(String type, String size, int number) {
         this.type = type;
         this.size = size;
         this.number = number;
     }
 
-    public Pizza(String id, String name, String address, String phoneNumber,
+    public Pizza pizzaOrder(String id, String name, String address, String phoneNumber,
                     Boolean isRush, String comments, String type, String size, int number, int totalCost) {
         this.id = generateId(8);
         this.name = name;
@@ -142,11 +142,11 @@ public class Pizza {
                 .add("number", this.getNumber())
                 .add("name", this.getName())
                 .add("address", this.getAddress())
+                .add("phoneNumber", this.getPhoneNumber())
                 .add("isRush", this.isRush())
                 .add("comments", this.getComments())
                 .add("cost", this.getCost())
                 .add("totalCost", this.getTotalCost())
-                .add("isRush", this.isRush())
                 .build();
     }
 
