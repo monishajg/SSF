@@ -24,7 +24,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 // import sg.edu.nus.iss.app.SSF.model.Model; (wrkshp13)
 
-// @Component is used for autodetection
-@Component("contacts")
+//@Component("contacts") //used for autodetection
 public class Models {
 }

@@ -17,10 +17,52 @@ import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Digits;
 
 public class Delivery {
+    
+    @NotNull
+    @Size(min =3)
     private String name;
+    
+    @NotNull
     private String address;
+
+    @Size(min = 8, max = 8)
+    @NotNull
     private String phoneNumber;
+
     private boolean isRush;
+    
     private String comments;
+
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    public boolean isRush() {
+        return isRush;
+    }
+    public void setRush(boolean isRush) {
+        this.isRush = isRush;
+    }
+    public String getComments() {
+        return comments;
+    }
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
     
 }

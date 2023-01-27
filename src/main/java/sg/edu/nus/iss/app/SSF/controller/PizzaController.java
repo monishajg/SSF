@@ -38,14 +38,8 @@ import sg.edu.nus.iss.app.SSF.service.AppService;
 @RequestMapping(path="/")
 public class PizzaController {
 
-    //@Autowired //(wrkshp14,16,17)
-    //private AppService appSvc;
-
-    // @GetMapping(path="") //(wrkshp14,16,17)
-    // public ???type? getSomething(Model model,){
-
-    //     return "result";
-    // }
+    @Autowired //(wrkshp14,16,17)
+    private AppService appSvc;
 
     @PostMapping (path="/pizza")
     public String postRegistration(@Valid Pizza pizza, 
@@ -56,6 +50,6 @@ public class PizzaController {
          return "view1";
     }
     
-
+    // @GetMapping(path="") //(wrkshp14,16,17)
     // @PutMapping(path="{}") //(wrkshp16)
 }
