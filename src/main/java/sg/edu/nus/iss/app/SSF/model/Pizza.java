@@ -18,6 +18,7 @@ import jakarta.validation.constraints.Digits;
 
 public class Pizza {
     // instance variables =====================================
+    @Size(max = 1)
     @NotNull(message = "Please select type of pizza")
     private String type;
 
@@ -35,7 +36,9 @@ public class Pizza {
     }
 
     public void setType(String type) {
-        this.type = type;
+        if (type.equals("bella") || type.equals("margherita") || type.equals("marinara") || type.equals("spianatacalabrese") || type.equals("trioformaggio")) {
+            this.type = type;
+        }
     }
 
     public String getSize() {
@@ -43,7 +46,9 @@ public class Pizza {
     }
 
     public void setSize(String size) {
-        this.size = size;
+        if (size.equals("sm") || size.equals("md") || size.equals("lg")) {
+            this.size = size;
+        }
     }
 
     public int getQuantity() {
