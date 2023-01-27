@@ -28,27 +28,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 //etc - ??? clean up later
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import redis.clients.jedis.Response;
 import sg.edu.nus.iss.app.SSF.model.Pizza;
-import sg.edu.nus.iss.app.SSF.service.AppService;
+import sg.edu.nus.iss.app.SSF.service.PizzaService;
 
 @Controller
 @RequestMapping(path="/")
 public class PizzaController {
 
     @Autowired //(wrkshp14,16,17)
-    private AppService appSvc;
+    private PizzaService pizzaSvc;
 
-    @PostMapping (path="/pizza")
-    public String postOrder(@Valid Pizza pizza, 
-        BindingResult bResult, Model model){
-         if(bResult.hasErrors()){
-             return "index";
-         }
-         return "view1";
+    // @GetMapping(path ="/pizza")
+    // public String getOrder(Model model) {
+    //     model.addAttribute("orderDetails", new Pizza());
+    //     return "view1";
+    // }
+
+    @PostMapping("/pizza")
+    public String savePizza(@Valid Pizza pizza, BindingResult result, 
+                Model model, HttpServletResponse response){
+        if(result.hasErrors()){
+            return "index";
+        }
+        pizzaSvc.save();
+        // model.addAttribute( "pizza", pizza);
+        response.setStatus(HttpServletResponse.SC_CREATED);
+        return "view1";
     }
+
+
+    // @PostMapping (path="/pizza/order", consumes= "application/x-www-form-urlencoded",
+    //     produces="text/html")
+    // public String postOrder(@Valid Pizza pizza, 
+    //     BindingResult bResult, Model model, HttpServletResponse reponse) {
+    //     if(bResult.hasErrors()){
+    //         return "index";
+    //     }
+    //     model.addAttribute("orderDetails", pizza);
+    //     response.setStatus(HttpServletResponse.SC_CREATED);
+    //     return "view1";
+    // }
+
+    // @PostMapping (path="/pizza/{order}")
+
     
     // @GetMapping(path="") //(wrkshp14,16,17)
     // @PutMapping(path="{}") //(wrkshp16)

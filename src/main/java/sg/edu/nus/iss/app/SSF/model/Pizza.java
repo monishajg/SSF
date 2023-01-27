@@ -3,6 +3,7 @@ package sg.edu.nus.iss.app.SSF.model;
 //??? clean up later
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -17,7 +19,7 @@ import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Digits;
 
 public class Pizza {
-    // instance variables =====================================
+    // Task 2 =====================================
     @Size(max = 1)
     @NotNull(message = "Please select type of pizza")
     private String type;
@@ -26,11 +28,10 @@ public class Pizza {
     private String size;
 
     @Min(value=1, message = "Minimum order of 1")
-    @Max(value=10, message = "Maximum order is 10")
+    @Max(value=11, message = "Maximum order is 10")
     @NotNull(message = "Please indicate number of pizzas")
     private int number;
-    
-    //getter and setters ======================================
+
     public String getType() {
         return type;
     }
@@ -58,4 +59,125 @@ public class Pizza {
     public void setQuantity(int quantity) {
         this.number = quantity;
     }
+
+    // Task 3 =====================================
+    @Size(min =3)
+    @NotNull
+    private String name;
+    
+    @NotNull
+    private String address;
+
+    @Size(min = 8, max = 9)
+    @NotNull
+    private String phoneNumber;
+
+    private boolean isRush;
+
+    private String comments;
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    public boolean isRush() {
+        return isRush;
+    }
+    public void setRush(boolean isRush) {
+        this.isRush = isRush;
+    }
+    public String getComments() {
+        return comments;
+    }
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    // Task 3 (cont.) =====================================
+    private static final long serialVersionUID = 1L;
+
+    private double cost;
+    private double totalCost;
+
+    public void Order (String type, String size, boolean isRush) {
+        this.type = type;
+        this.size = size;
+        this.isRush = isRush;
+        calculateTotalCost();
+    }
+
+    public void setPizzaType(String type) {
+        this.type = type;
+        calculateTotalCost();
+    }
+
+    public void setPizzaSize(String size) {
+        this.size = size;
+        calculateTotalCost();
+    }
+
+    public void setRushed(boolean rushed) {
+        isRush = true;
+        calculateTotalCost();
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    private void calculateTotalCost() {
+        double basePrice = 0;
+        double sizeMultiplier = 1;
+        double rushCharge = isRush ? 2 : 0;
+
+        switch (type) {
+            case "bella":
+            case "marinara":
+            case "spianatacalabrese":
+                basePrice = 30;
+                break;
+            case "margherita":
+                basePrice = 22;
+                break;
+            case "trioformaggio":
+                basePrice = 25;
+                break;
+            default:
+                System.out.println("Invalid pizza type.");
+                break;
+        }
+
+        switch (size) {
+            case "sm":
+                sizeMultiplier = 1;
+                break;
+            case "md":
+                sizeMultiplier = 1.2;
+                break;
+            case "lg":
+                sizeMultiplier = 1.5;
+                break;
+            default:
+                System.out.println("Invalid pizza size.");
+                break;
+        }
+        cost = (basePrice * sizeMultiplier);
+        totalCost = cost + rushCharge;
+    }
+
+
 }

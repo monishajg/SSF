@@ -6,5 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View 2</title>
 </head>
-<body>
+<body data-th-object="${pizza}">
     <h1>Delivery Details</h1>
+    <br>
+    <p>Order Number:</p>
+    <p data-th-text="*{id}"></p>
+    <br>
+    <p>Your order will be deivered to</p>
+    <p data-th-text="*{address}"></p>
+    <br>
+    <p>Pizza cost:</p>
+    <p data-th-text="*{cost}"></p>
+    <br>
+    <p>Rush:</p>
+    <p data-th-text="*{isRush}"></p>
+    <br>
+    <p>Total cost:</p>
+    <p data-th-text="*{totalCost}"></p>
+    <br>
+    
+</body>
+</html>

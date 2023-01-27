@@ -14,7 +14,7 @@
 		<form
 		action="#"
         th:action="@{/pizza}"
-        th:object="${postOrder}"
+        th:object="${savePizza}"
         method="post">
 			<div>
 				<h2>Select a pizza</h2>
@@ -62,19 +62,19 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Size:</td>
-						<td>
-							<select name="size" >
-								<option value="sm">Small</option>
-								<option value="md">Medium</option>
-								<option value="lg">Large</option>
-							</select>
+						<td>Size:</td> 
+						<td> 
+						 <select name="size" required> 
+						  <option value="sm">Small</option> 
+						  <option value="md">Medium</option> 
+						  <option value="lg">Large</option> 
+						 </select> 
 						</td>
 					</tr>
 					<tr>
 						<td>Quantity:</td>
 						<td>
-							<input type="number" min="1" max="10" name="quantity"> 
+							<input type="number" min="1" max="10" name="quantity" required> 
 						</td>
 					</tr>
 					<tr>

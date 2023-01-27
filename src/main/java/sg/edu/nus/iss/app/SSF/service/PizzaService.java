@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 // import sg.edu.nus.iss.app.SSF.model.Model; (wrkshp14,16,17)
 
 @Service // class contains business logic and can be used by other classes
-public class AppService {
+public class PizzaService {
 
     // private static final String CONTACT_ENTITY = "contactlist";
 
     @Autowired
     RedisTemplate<String, Object> redisTemplate; //same in workshop14,16, store persistence methods
 
-    // public int saveGame() {
+    public void save() {
     //     System.out.println("mds >>>>>>>>");
-    //     redisTemplate.opsForValue().set("key","value");
-    // }
+         redisTemplate.opsForValue().set("key","value");
+    }
 
     // public void save() {
     //     redisTemplate.opsForList()
